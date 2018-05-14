@@ -25,3 +25,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+project.ext {
+    roomVersion = "1.0.0"
+    aacVersion = "1.1.1"
+    androidLibraryVersion = "27.1.1"
+}
