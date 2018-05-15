@@ -22,7 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:onClick="onSaveClick"
         android:text="@string/boton_guardar" />
 
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:onClick="onWebServiceClick"
+        android:text="@string/add_webservice"/>
 
+</LinearLayout>

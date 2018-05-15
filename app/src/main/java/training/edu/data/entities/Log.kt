@@ -2,8 +2,7 @@ package training.edu.data.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import java.sql.Date
-
+import java.util.Date
 /**
  * Created by rdelgado on 5/8/2018.
  */

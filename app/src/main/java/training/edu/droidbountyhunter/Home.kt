@@ -3,6 +3,7 @@ package training.edu.droidbountyhunter
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -25,6 +26,10 @@ class Home : AppCompatActivity() {
     private var mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
     private var fragments = arrayOf<Fragment?>()
     private var mViewPager: ViewPager? = null
+
+    companion object {
+        lateinit var UDID: String
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +54,8 @@ class Home : AppCompatActivity() {
             startActivity(intent)
         }
 
+        UDID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,12 +65,24 @@ class Home : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var intent: Intent
+        var intent: Intent? = null
         if (item.itemId == R.id.menu_agregar) {
             intent = Intent(this, Agregar::class.java)
-            startActivity(intent)
+        } else if (item.itemId == R.id.menu_logeliminacion) {
+            intent = Intent(this, LogEliminacion::class.java)
         }
+        startActivityForResult(intent, 0)
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateLists(index: Int) {
+        mViewPager?.adapter = mSectionsPagerAdapter
+        mViewPager?.currentItem = index
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        updateLists(resultCode)
     }
 
     class ListFragment : Fragment() {

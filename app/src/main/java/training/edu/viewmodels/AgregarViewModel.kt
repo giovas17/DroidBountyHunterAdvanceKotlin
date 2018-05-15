@@ -15,7 +15,7 @@ class AgregarViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
     private val fugitivosUseCase = FugitivosUseCase(droidBountyHunterDatabase)
 
     fun addFugitivo(name: String){
-        fugitivosUseCase.addFugitivo(Fugitivo(null, name, "0", "", 0))
+        fugitivosUseCase.addFugitivo(Fugitivo(null, name, "0", ""))
     }
 
     fun getFugitivosCount(): Int{

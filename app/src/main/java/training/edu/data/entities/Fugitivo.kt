@@ -11,6 +11,5 @@ data class Fugitivo constructor(
         @PrimaryKey(autoGenerate = true) var id: Int? = null,
         var name: String,
         var status: String,
-        var photo: String,
-        var notification: Int)
+        var photo: String)
 

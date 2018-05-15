@@ -32,6 +32,7 @@ class FugitivosUseCase constructor(droidBountyHunterDatabase: DroidBountyHunterD
             count =  fugitivoDao.count()
         }
         t.start()
+        t.join()
         return count
     }
 

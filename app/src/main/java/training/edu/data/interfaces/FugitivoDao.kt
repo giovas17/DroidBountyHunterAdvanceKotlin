@@ -14,9 +14,6 @@ interface FugitivoDao {
     @Query("SELECT * FROM fugitivos WHERE status = '0'")
     fun getFugitivos(): LiveData<List<Fugitivo>>
 
-    @Query("SELECT * FROM fugitivos WHERE notification = '1'")
-    fun getFugitivosNotificados(): List<Fugitivo>
-
     @Query("SELECT * FROM fugitivos WHERE status = '1' ")
     fun getCapturados(): LiveData<List<Fugitivo>>
 

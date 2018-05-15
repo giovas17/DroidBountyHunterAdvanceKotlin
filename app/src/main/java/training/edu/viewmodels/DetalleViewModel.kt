@@ -19,7 +19,7 @@ class DetalleViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
     var mode: Int = 0
     var id: Int = 0
     var pathImage: Uri? = null
-    var foto: String? = null
+    var foto: String = ""
 
     companion object {
         const val REQUEST_CODE_PHOTO_IMAGE = 1787
@@ -27,11 +27,11 @@ class DetalleViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
 
     fun updatePhotoFugitivo(pathPhoto : String){
         foto = pathPhoto
-        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, mode.toString(), if (pathPhoto.isEmpty()) "" else pathPhoto, 0))
+        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, mode.toString(), if (pathPhoto.isEmpty()) "" else pathPhoto))
     }
 
     fun updateCapturedFugitivo(){
-        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, "1", foto!!, 0))
+        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, "1", foto))
     }
 
     fun getMessageFromJSON(response: String): String?{
@@ -46,7 +46,7 @@ class DetalleViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
     }
 
     fun deleteFugitivo(id: Int){
-        fugitivosUseCase.deleteFugitivo(Fugitivo(id,"","","",0))
+        fugitivosUseCase.deleteFugitivo(Fugitivo(id,"","",""))
     }
 
 
