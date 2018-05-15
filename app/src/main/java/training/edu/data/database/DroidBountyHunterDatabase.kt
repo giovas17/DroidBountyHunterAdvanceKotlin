@@ -20,7 +20,7 @@ import training.edu.data.interfaces.LogDao
 abstract class DroidBountyHunterDatabase : RoomDatabase(){
 
     companion object {
-        const val VERSION = 1
+        const val VERSION = 3
 
         private var INSTANCE: DroidBountyHunterDatabase? = null
 
@@ -30,6 +30,7 @@ abstract class DroidBountyHunterDatabase : RoomDatabase(){
         private const val COLUMN_NAME_NAME = "name"
         private const val TABLE_NAME_LOG = "Log"
         private const val COLUMN_NAME_DATE = "date"
+        private const val COLUMN_NAME_STATUS = "status"
 
         fun getInstance(context: Context?): DroidBountyHunterDatabase? {
             synchronized(sLock) {
@@ -51,9 +52,8 @@ abstract class DroidBountyHunterDatabase : RoomDatabase(){
                 db.execSQL("CREATE TRIGGER LogEliminacion Before DELETE ON " + TABLE_NAME +
                         " FOR EACH ROW " +
                         "BEGIN " +
-                        "INSERT INTO " + TABLE_NAME_LOG + "(" + COLUMN_NAME_NAME + "," +
-                        COLUMN_NAME_DATE + ")" +
-                        " VALUES(old.name, datetime('now')); " +
+                        "INSERT INTO " + TABLE_NAME_LOG + "(" + COLUMN_NAME_NAME + "," + COLUMN_NAME_DATE + "," + COLUMN_NAME_STATUS + ")" +
+                        " VALUES(old.name, datetime('now'), old.status); " +
                         "END")
             }
         }

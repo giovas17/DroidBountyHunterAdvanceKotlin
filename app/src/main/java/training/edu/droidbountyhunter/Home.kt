@@ -56,6 +56,8 @@ class Home : AppCompatActivity() {
 
         UDID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
+        //deleteDatabase("DroidBountyHunterDataBase.db")
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

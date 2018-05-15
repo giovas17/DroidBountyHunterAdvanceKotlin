@@ -9,7 +9,8 @@ import java.util.Date
 @Entity(tableName = "Log")
 data class Log constructor(
         var name: String,
-        var date: Date)
+        var date: Date,
+        var status: String )
 {
     @PrimaryKey(autoGenerate = true) var id: Int? = null
 }

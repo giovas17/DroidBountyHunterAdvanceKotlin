@@ -17,30 +17,9 @@ import training.edu.viewmodels.LogEliminacionViewModel
  */
 class LogEliminacion : AppCompatActivity(){
 
-    private var adaptador: ArrayAdapter<Log>? = null
-    private lateinit var vm: LogEliminacionViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_log_eliminacion)
         title = "Log de Eliminación"
-
-        vm = LogEliminacionViewModel(DroidBountyHunterDatabase.getInstance(applicationContext))
-
-        val lista = findViewById<ListView>(R.id.list)
-
-        vm.getLogs().observe(this, Observer {  logsList ->
-            if (logsList!!.isNotEmpty()) {
-                adaptador = ArrayAdapter(applicationContext,
-                        android.R.layout.simple_list_item_1, logsList)
-                // Assign adapter to ListView
-                lista.adapter = adaptador
-            }
-        })
-
-        lista.onItemClickListener = AdapterView.OnItemClickListener {
-            _, _, position, _ ->
-            Toast.makeText(this@LogEliminacion, position.toString() + " " +
-                    adaptador!!.getItem(position)!!.toString(), Toast.LENGTH_LONG).show() }
     }
 }
