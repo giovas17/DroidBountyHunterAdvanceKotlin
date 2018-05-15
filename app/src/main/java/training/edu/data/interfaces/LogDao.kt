@@ -12,4 +12,7 @@ import training.edu.data.entities.Log
 interface LogDao {
     @Query("SELECT * FROM Log")
     fun getAll(): LiveData<List<Log>>
+
+    @Query("SELECT COUNT(*) FROM fugitivos WHERE notification = '1'" )
+    fun countFugitivosSinNotificar(): Int
 }

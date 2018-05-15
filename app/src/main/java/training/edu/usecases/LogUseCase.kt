@@ -14,4 +14,14 @@ class LogUseCase(droidBountyHunterDatabase: DroidBountyHunterDatabase?) {
     fun getLogs(): LiveData<List<Log>>{
         return logDao.getAll()
     }
+
+    fun getCountFugitivosSinNotificar(): Int{
+        var count = 0
+        val t = Thread{
+            count = logDao.countFugitivosSinNotificar()
+        }
+        t.start()
+        t.join()
+        return count
+    }
 }

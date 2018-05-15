@@ -27,11 +27,11 @@ class DetalleViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
 
     fun updatePhotoFugitivo(pathPhoto : String){
         foto = pathPhoto
-        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, mode.toString(), if (pathPhoto.isEmpty()) "" else pathPhoto))
+        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, mode.toString(), if (pathPhoto.isEmpty()) "" else pathPhoto, 0))
     }
 
     fun updateCapturedFugitivo(){
-        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, "1", foto))
+        fugitivosUseCase.updateFugitivo(Fugitivo(id, titulo, "1", foto, 0))
     }
 
     fun getMessageFromJSON(response: String): String?{
@@ -46,7 +46,7 @@ class DetalleViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
     }
 
     fun deleteFugitivo(id: Int){
-        fugitivosUseCase.deleteFugitivo(Fugitivo(id,"","",""))
+        fugitivosUseCase.deleteFugitivo(Fugitivo(id,"","","", 0))
     }
 
 

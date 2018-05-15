@@ -19,6 +19,7 @@ import android.widget.ListView
 import training.edu.data.database.DroidBountyHunterDatabase
 import training.edu.data.entities.Fugitivo
 import training.edu.fragments.About
+import training.edu.services.ServicioNotificaciones
 import training.edu.viewmodels.ListFragmentViewModel
 
 class Home : AppCompatActivity() {
@@ -55,6 +56,10 @@ class Home : AppCompatActivity() {
         }
 
         UDID = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+
+        if (!ServicioNotificaciones.isRunning()) {
+            startService(Intent(this, ServicioNotificaciones::class.java))
+        }
 
         //deleteDatabase("DroidBountyHunterDataBase.db")
 

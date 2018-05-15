@@ -10,6 +10,7 @@ import java.util.Date
 data class Log constructor(
         var name: String,
         var date: Date,
+        var notification: Int,
         var status: String )
 {
     @PrimaryKey(autoGenerate = true) var id: Int? = null
