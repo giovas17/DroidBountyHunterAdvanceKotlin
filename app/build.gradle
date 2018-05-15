@@ -16,10 +16,26 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        config {
+            try {
+                keyAlias 'AndroidCourse'
+                keyPassword "giovas"
+                storeFile file('DroidBountyHunterKeystore.jks')
+                storePassword "giovas"
+            } catch (ignored) {
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and STORE_PASSWORD in gradle.properties.")
+            }
+        }
+    }
     buildTypes {
+        debug{
+            signingConfig signingConfigs.config
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -40,7 +56,12 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$project.roomVersion"
     kapt "android.arch.persistence.room:compiler:$project.roomVersion"
 
+    // Firebase
+    implementation "com.google.firebase:firebase-core:$project.firebaseVersion"
+    implementation "com.google.firebase:firebase-messaging:$project.firebaseVersion"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+apply plugin: 'com.google.gms.google-services'
