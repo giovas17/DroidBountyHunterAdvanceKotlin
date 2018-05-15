@@ -1,10 +1,13 @@
 package training.edu.viewmodels
 
 import android.arch.lifecycle.ViewModel
+import android.content.res.Resources
 import org.json.JSONArray
+import org.w3c.dom.NodeList
 import training.edu.data.database.DroidBountyHunterDatabase
 import training.edu.data.entities.Fugitivo
 import training.edu.usecases.FugitivosUseCase
+import training.edu.usecases.XmlUseCase
 
 
 /**
@@ -13,6 +16,7 @@ import training.edu.usecases.FugitivosUseCase
 class AgregarViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : ViewModel() {
 
     private val fugitivosUseCase = FugitivosUseCase(droidBountyHunterDatabase)
+    private val xmlUseCase = XmlUseCase()
 
     fun addFugitivo(name: String){
         fugitivosUseCase.addFugitivo(Fugitivo(null, name, "0", ""))
@@ -20,6 +24,10 @@ class AgregarViewModel(droidBountyHunterDatabase: DroidBountyHunterDatabase?) : 
 
     fun getFugitivosCount(): Int{
         return fugitivosUseCase.getFugitivosCount()
+    }
+
+    fun getXmlNodeItems(resources: Resources): NodeList?{
+        return xmlUseCase.getNodeItems(resources)
     }
 
     fun addFugitivoFromJSON(response: String){
